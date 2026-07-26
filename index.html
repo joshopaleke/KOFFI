@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KOFFI — Love for Koffi, Fear of Small Places</title>
+  <meta name="description" content="Great Koffi deserves room to breathe, and so do you. Discover blends crafted for comfort, calm, and a little escape in every sip." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500&family=Joti+One&display=swap" rel="stylesheet" />
+  <style>
+    @font-face { font-family:'NimbuDemo'; src:url('fonts/NimbuDemo-SemiBold.otf') format('opentype'); font-weight:600; font-display:swap; }
+    @font-face { font-family:'NimbuDemo'; src:url('fonts/NimbuDemo-Medium.otf')   format('opentype'); font-weight:500; font-display:swap; }
+    @font-face { font-family:'NimbuDemo'; src:url('fonts/NimbuDemo-Bold.otf')     format('opentype'); font-weight:700; font-display:swap; }
+    @font-face { font-family:'NimbuDemo'; src:url('fonts/NimbuDemo-Regular.otf')  format('opentype'); font-weight:400; font-display:swap; }
+
+    :root {
+      --green:#09543d; --green-dk:#012218; --brown:#461e10; --brown-lt:#332601;
+      --cream:#fffdf7; --pink:#ffa9e9; --white:#ffffff; --muted:rgba(38,38,38,0.72);
+      --expo:cubic-bezier(0.16,1,0.3,1); --spring:cubic-bezier(0.34,1.56,0.64,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Poppins',sans-serif;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+    .page{display:flex;flex-direction:column;gap:10px;padding:16px;}
+
+    /* HERO */
+    .hero{position:relative;background:var(--green);border-radius:12px;overflow:hidden;min-height:740px;}
+    .hero::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.07) 1px,transparent 1px);background-size:22px 22px;pointer-events:none;z-index:1;}
+    .nav{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:calc(100% - 90px);max-width:1200px;display:flex;align-items:center;justify-content:space-between;z-index:20;opacity:0;animation:fadeIn .5s var(--expo) 0s forwards;}
+    .nav__logo{display:flex;align-items:center;gap:8px;text-decoration:none;transition:opacity 150ms ease;}
+    .nav__logo:hover{opacity:.8;}
+    .nav__logo-text{font-family:'Joti One',cursive;font-size:26px;color:var(--white);letter-spacing:.5px;text-transform:uppercase;line-height:1;}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:16px;text-transform:uppercase;cursor:pointer;border:none;text-decoration:none;will-change:transform;transition:transform 150ms var(--expo),box-shadow 150ms var(--expo);-webkit-tap-highlight-color:transparent;}
+    .btn:active{transform:scale(.96) translateY(1px)!important;}
+    .btn--nav{background:var(--pink);color:var(--brown);padding:14px 18px;border-radius:6px;box-shadow:1.5px 1.5px 0 .75px var(--brown);letter-spacing:.04em;}
+    .btn--nav:hover{transform:translateY(-2px);box-shadow:2px 4px 0 .75px var(--brown);}
+    .btn--pink{background:var(--pink);color:var(--brown);padding:20px 26px;border-radius:8px;box-shadow:2px 2px 0 1px var(--brown);letter-spacing:.04em;}
+    .btn--pink:hover{transform:translateY(-3px);box-shadow:3px 5px 0 1px var(--brown);}
+    .btn--white{background:var(--white);color:var(--brown);padding:20px 26px;border-radius:8px;box-shadow:2px 2px 0 1px var(--green-dk);letter-spacing:.04em;}
+    .btn--white:hover{transform:translateY(-3px);box-shadow:3px 5px 0 1px var(--green-dk);}
+    .hero__inner{position:relative;z-index:10;max-width:1200px;margin:0 auto;padding:130px 45px 80px;min-height:740px;display:flex;align-items:center;justify-content:space-between;}
+    .hero__left{display:flex;flex-direction:column;gap:52px;flex:0 0 560px;}
+    .hero__text-group{display:flex;flex-direction:column;gap:36px;}
+    .hero__headline{font-family:'NimbuDemo','Georgia',serif;font-weight:600;font-size:75.21px;line-height:76.15px;color:var(--white);text-transform:uppercase;letter-spacing:.5368px;opacity:0;transform:translateY(20px);animation:fadeUp .7s var(--expo) .1s forwards;}
+    .hero__headline .pk{display:inline;position:relative;}
+    .hero__headline .pk::before{content:'';position:absolute;top:3px;bottom:3px;left:-6px;right:-6px;background:var(--pink);z-index:0;transform:scaleX(0);transform-origin:left;animation:slideBar .55s var(--expo) .45s forwards;}
+    .hero__headline .pk span{position:relative;z-index:1;color:var(--brown);}
+    @keyframes slideBar{to{transform:scaleX(1);}}
+    .hero__subtext{font-size:20px;font-weight:400;color:rgba(255,255,255,.8);letter-spacing:-.5px;line-height:30px;max-width:540px;opacity:0;transform:translateY(18px);animation:fadeUp .6s var(--expo) .3s forwards;}
+    .hero__ctas{display:flex;gap:10px;align-items:center;opacity:0;transform:translateY(14px);animation:fadeUp .5s var(--expo) .55s forwards;}
+    .hero__illus{flex:0 0 auto;width:520px;display:flex;align-items:flex-end;justify-content:flex-end;align-self:flex-end;opacity:0;transform:translateX(30px);animation:fadeLeft .8s var(--expo) .15s forwards;}
+    .hero__illus img{width:520px;height:auto;display:block;mix-blend-mode:multiply;filter:contrast(1.05);margin-bottom:-2px;}
+    .hero__illus.float img{animation:floatY 5s ease-in-out 1s infinite;}
+    @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+    .hero__badge{position:absolute;bottom:40px;right:calc((100% - 1200px)/2 + 80px);z-index:15;opacity:0;animation:fadeIn .6s var(--expo) .9s forwards;}
+    .hero__badge-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%) rotate(13.73deg);font-family:'NimbuDemo','Georgia',serif;font-weight:600;font-size:22px;color:var(--white);text-transform:uppercase;letter-spacing:.54px;white-space:nowrap;pointer-events:none;}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeLeft{to{opacity:1;transform:translateX(0);}}
+    @keyframes fadeIn{to{opacity:1;}}
+
+    /* BODY SECTION */
+    .body-section{background:var(--cream);border-radius:12px;position:relative;}
+    .section-header{display:flex;flex-direction:column;align-items:center;padding:100px 45px 80px;}
+    .pill{display:inline-flex;align-items:center;gap:7.6px;padding:9.9px 15.2px 9.9px 9.1px;border-radius:6.1px;border:1px solid rgba(70,30,16,.15);background:rgba(255,255,255,.85);backdrop-filter:blur(6px);margin-bottom:18px;}
+    .pill__slash{font-family:'Inter',sans-serif;font-size:8.4px;font-weight:500;color:var(--brown);opacity:.5;}
+    .pill__label{font-family:'Inter',sans-serif;font-size:8.8px;font-weight:500;color:var(--brown);white-space:nowrap;}
+    .section-title{font-family:'NimbuDemo','Georgia',serif;font-weight:500;font-size:50.1px;line-height:56px;color:var(--brown);text-align:center;letter-spacing:-.52px;}
+    .section-title .hl{display:inline;position:relative;}
+    .section-title .hl::before{content:'';position:absolute;left:-8px;right:-8px;top:4px;bottom:2px;background:var(--pink);z-index:0;}
+    .section-title .hl span{position:relative;z-index:1;}
+    .section-subtitle{font-size:15px;font-weight:400;color:var(--muted);text-align:center;line-height:24px;margin-top:18px;}
+
+    /*
+      SCROLL TRIGGER — provides the scroll travel in normal flow.
+      height = 260vh = enough for 3 card stacking sequences.
+      Invisible spacer on desktop; flat card list on mobile.
+    */
+    #cards-trigger{height:260vh;background:transparent;}
+
+    /*
+      FIXED PANEL — position:fixed, full-screen, z-index:100.
+      Lives OUTSIDE .page to avoid any overflow/clip context.
+      JS toggles .active when trigger is on-screen.
+      Background: cream to match the body section.
+    */
+    #cards-panel{
+      position:fixed;inset:0;
+      background:var(--cream);
+      display:flex;align-items:center;justify-content:center;
+      opacity:0;pointer-events:none;
+      transition:opacity 300ms ease;
+      z-index:100;
+    }
+    #cards-panel.active{opacity:1;pointer-events:auto;}
+
+    /* Cards arena: the shared coordinate space for all 3 cards */
+    .cards-arena{
+      position:relative;
+      width:min(860px,calc(100vw - 90px));
+      height:201px;
+    }
+
+    /* Individual stack cards */
+    .stack-card{
+      position:absolute;inset:0;
+      background:var(--white);
+      border-radius:20px;
+      box-shadow:0 4px 67px 0 rgba(0,0,0,.10);
+      padding:40px;
+      display:flex;align-items:center;justify-content:space-between;gap:30px;
+      overflow:hidden;cursor:pointer;
+      will-change:transform,opacity;
+      transition:box-shadow 300ms ease;
+      transform:translateY(100vh) rotate(0deg);
+      opacity:0;
+    }
+    .stack-card:hover{box-shadow:0 16px 80px 0 rgba(0,0,0,.20);}
+    .stack-card:focus-visible{outline:3px solid var(--pink);outline-offset:4px;}
+    #sc1{z-index:1;}
+    #sc2{z-index:2;}
+    #sc3{z-index:3;}
+
+    .card__body{display:flex;flex-direction:column;gap:15px;flex:1;}
+    .card__title{font-family:'Poppins',sans-serif;font-size:24px;font-weight:400;color:var(--brown-lt);letter-spacing:-.24px;line-height:29px;}
+    .card__desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:400;color:var(--brown-lt);line-height:16px;max-width:260px;}
+    .card__figure{width:121px;height:121px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:transform 280ms var(--spring);}
+    .stack-card:hover .card__figure{transform:scale(1.08) rotate(-4deg);}
+    .card__figure img{width:100%;height:100%;object-fit:contain;}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 480ms var(--expo),transform 480ms var(--expo);}
+    .reveal.in{opacity:1;transform:translateY(0);}
+    .reveal--d1{transition-delay:60ms;}
+    .reveal--d2{transition-delay:120ms;}
+
+    /* Cursor glow */
+    .cursor-glow{position:fixed;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,169,233,.08) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);z-index:9999;opacity:0;transition:opacity .4s ease;}
+
+    /* Mobile */
+    @media(max-width:860px){
+      #cards-panel{display:none!important;}
+      #cards-trigger{height:auto;padding:0 20px 60px;display:flex;flex-direction:column;gap:16px;}
+      .stack-card{position:relative;inset:auto;transform:none!important;opacity:1!important;height:auto;min-height:140px;}
+      .hero__inner{flex-direction:column;align-items:flex-start;padding-top:90px;gap:40px;}
+      .hero__left{flex:none;width:100%;}
+      .hero__headline{font-size:46px;line-height:50px;}
+      .hero__illus{width:100%;justify-content:center;align-self:auto;}
+      .hero__illus img{width:300px;}
+      .hero__badge{right:20px;bottom:20px;}
+      .section-header{padding:60px 24px 40px;}
+      .section-title{font-size:36px;line-height:42px;}
+    }
+    @media(max-width:1100px){
+      .hero__left{flex:0 0 480px;}
+      .hero__headline{font-size:60px;line-height:62px;}
+      .hero__illus,.hero__illus img{width:420px;}
+    }
+    @media(max-width:520px){
+      .hero__headline{font-size:36px;line-height:40px;}
+      .hero__subtext{font-size:16px;}
+      .hero__ctas{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cg"></div>
+
+<div class="page">
+
+  <section class="hero" aria-label="Hero">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#" class="nav__logo" aria-label="KOFFI home">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <g clip-path="url(#lc)">
+            <path d="M11 11C17.0751 11 22 15.9249 22 22H13.0524C12.8745 18.9326 10.3308 16.5 7.21875 16.5C4.1067 16.5 1.56303 18.9326 1.38505 22H0C0 15.9249 4.92491 11 11 11ZM8.94755 0C9.12553 3.06745 11.6692 5.5 14.7812 5.5C17.8933 5.5 20.437 3.06745 20.6149 0H22C22 6.07509 17.0751 11 11 11C4.92491 11 0 6.07509 0 0H8.94755Z" fill="white"/>
+          </g>
+          <defs><clipPath id="lc"><rect width="22" height="22" fill="white"/></clipPath></defs>
+        </svg>
+        <span class="nav__logo-text">KOFFI</span>
+      </a>
+      <a href="#blends" class="btn btn--nav">Explore Blends</a>
+    </nav>
+    <div class="hero__inner">
+      <div class="hero__left">
+        <div class="hero__text-group">
+          <h1 class="hero__headline">
+            Love for Koffi,<br>
+            Fear of <span class="pk"><span>Small</span></span><br>
+            Places.
+          </h1>
+          <p class="hero__subtext">Great Koffi deserves room to breathe, and so do you. Discover blends crafted for comfort, calm, and a little escape in every sip.</p>
+        </div>
+        <div class="hero__ctas">
+          <a href="#shop" class="btn btn--pink">Shop our KOFFI</a>
+          <a href="#mug"  class="btn btn--white">Make Your Mug Happy</a>
+        </div>
+      </div>
+      <div class="hero__illus" id="heroIllus">
+        <img src="Group 1.png" alt="Person holding a KOFFI cup" id="heroImg" loading="eager" />
+      </div>
+    </div>
+    <div class="hero__badge" aria-hidden="true">
+      <svg width="88" height="49" viewBox="0 0 90 49" fill="none">
+        <path d="M78.2249 18.5649L2.22486 1.02646C1.59824 0.881861 1 1.35777 1 2.00086V24.4708C1 24.9261 1.30749 25.3239 1.74804 25.4386L84.8629 47.0779C85.2495 47.1786 85.6589 47.0395 85.9042 46.7241L88.4286 43.4784C88.7506 43.0645 88.6981 42.4721 88.3082 42.1212L79.331 34.0417C79.1208 33.8521 79 33.5819 79 33.2984V19.5393C79 19.0737 78.6786 18.6696 78.2249 18.5649Z" fill="#09543D" stroke="black" stroke-width="2"/>
+      </svg>
+      <span class="hero__badge-label">Koffi</span>
+    </div>
+  </section>
+
+  <section class="body-section" id="blends" aria-label="Why Koffi Exists">
+    <header class="section-header">
+      <div class="pill reveal">
+        <span class="pill__slash">//</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2.85242 3.99329L3.85657 9.929C4.03112 10.9608 4.11839 11.4767 4.42698 11.8326C5.25663 12.7897 8.43489 12.7897 9.26454 11.8326C9.57317 11.4767 9.6604 10.9608 9.83496 9.929L10.8391 3.99329" stroke="#461E10" stroke-width="1.14096" stroke-linecap="round"/>
+          <path d="M2.85242 3.99332L3.27616 3.01644C3.62352 2.21563 3.7972 1.81522 4.15939 1.5891C5.06615 1.02298 8.52594 0.96091 9.53215 1.5891C9.89435 1.81522 10.068 2.21563 10.4154 3.01644L10.8391 3.99332" stroke="#461E10" stroke-width="1.14096" stroke-linecap="round"/>
+          <path d="M2.28198 3.99329H11.4096" stroke="#461E10" stroke-width="1.14096" stroke-linecap="round"/>
+          <path d="M6.84579 9.6981C7.47592 9.6981 7.98675 9.05957 7.98675 8.2719C7.98675 7.48423 7.47592 6.8457 6.84579 6.8457C6.21566 6.8457 5.70483 7.48423 5.70483 8.2719C5.70483 9.05957 6.21566 9.6981 6.84579 9.6981Z" stroke="#461E10" stroke-width="1.14096" stroke-linecap="round"/>
+        </svg>
+        <span class="pill__label">Why Koffi Exists</span>
+        <span class="pill__slash">//</span>
+      </div>
+      <h2 class="section-title reveal reveal--d1">
+        Coffee that gives you<br>
+        <span class="hl"><span>space to breathe</span></span>
+      </h2>
+      <p class="section-subtitle reveal reveal--d2">Because great flavour deserves room, and so do you.</p>
+    </header>
+
+    <!-- Scroll travel spacer on desktop / flat list on mobile -->
+    <div id="cards-trigger">
+      <!-- Mobile flat cards only -->
+      <article class="stack-card" id="sc1m" tabindex="0">
+        <div class="card__body"><h3 class="card__title">Crafted for Calm</h3><p class="card__desc">Blends designed for people who want ritual without rush.</p></div>
+        <figure class="card__figure"><img src="hands-heart.svg.svg" alt="" loading="lazy" /></figure>
+      </article>
+      <article class="stack-card" id="sc2m" tabindex="0">
+        <figure class="card__figure"><img src="hands-clac.svg.svg" alt="" loading="lazy" /></figure>
+        <div class="card__body"><h3 class="card__title">Flavour Without the Fuss</h3><p class="card__desc">Smooth, bold taste minus the noise and crowded café energy.</p></div>
+      </article>
+      <article class="stack-card" id="sc3m" tabindex="0">
+        <div class="card__body"><h3 class="card__title">Comfort in Every Cup</h3><p class="card__desc">A soothing brew for all who prefer breathing room over bustle.</p></div>
+        <figure class="card__figure"><img src="hands-hello.svg.svg" alt="" loading="lazy" /></figure>
+      </article>
+    </div>
+
+  </section>
+</div>
+
+<!-- FIXED PANEL: outside .page to avoid any overflow clipping -->
+<div id="cards-panel" aria-hidden="true">
+  <div class="cards-arena">
+    <article class="stack-card" id="sc1" tabindex="0" aria-label="Crafted for Calm">
+      <div class="card__body"><h3 class="card__title">Crafted for Calm</h3><p class="card__desc">Blends designed for people who want ritual without rush.</p></div>
+      <figure class="card__figure"><img src="hands-heart.svg.svg" alt="" loading="lazy" /></figure>
+    </article>
+    <article class="stack-card" id="sc2" tabindex="0" aria-label="Flavour Without the Fuss">
+      <figure class="card__figure"><img src="hands-clac.svg.svg" alt="" loading="lazy" /></figure>
+      <div class="card__body"><h3 class="card__title">Flavour Without the Fuss</h3><p class="card__desc">Smooth, bold taste minus the noise and crowded café energy.</p></div>
+    </article>
+    <article class="stack-card" id="sc3" tabindex="0" aria-label="Comfort in Every Cup">
+      <div class="card__body"><h3 class="card__title">Comfort in Every Cup</h3><p class="card__desc">A soothing brew for all who prefer breathing room over bustle.</p></div>
+      <figure class="card__figure"><img src="hands-hello.svg.svg" alt="" loading="lazy" /></figure>
+    </article>
+  </div>
+</div>
+
+<script>
+/*
+  SCROLL-STACK ENGINE — FIXED PANEL APPROACH
+  ------------------------------------------
+  #cards-trigger  = 260vh scroll spacer in normal flow.
+  #cards-panel    = position:fixed full-screen, active only while trigger is on-screen.
+  
+  Card schedule (fraction of trigger scroll travel):
+    Card 1: enters 0%–22%, rests flat (0deg)
+    Card 2: enters 30%–52%, tilts -4deg (reveals card 1 beneath)
+    Card 3: enters 60%–82%, tilts +5.6deg (reveals the full deck)
+  
+  Spring: lerp(cur, tgt, 0.085) each rAF frame.
+  One-way ratchet: cards can only move UP, never back down.
+*/
+(function() {
+  if (window.innerWidth <= 860) return;
+
+  var trigger = document.getElementById('cards-trigger');
+  var panel   = document.getElementById('cards-panel');
+  var cards   = [
+    document.getElementById('sc1'),
+    document.getElementById('sc2'),
+    document.getElementById('sc3')
+  ];
+
+  // Animation schedule per card
+  var SCHED = [
+    { es: 0.00, ee: 0.22, rot:  0   },
+    { es: 0.30, ee: 0.52, rot: -4   },
+    { es: 0.60, ee: 0.82, rot:  5.6 }
+  ];
+
+  // Spring state: ty = translateY in vh units (1=below, 0=settled), rot, op, sc
+  var S = SCHED.map(function() {
+    return { ty: 1, rot: 0, op: 0, sc: 1, minTy: 1 };
+  });
+
+  var LY = 0.085, LR = 0.085, LO = 0.13, LS = 0.085;
+  var active = false;
+
+  function lerp(a,b,t){ return a+(b-a)*t; }
+  function clamp(v,lo,hi){ return v<lo?lo:v>hi?hi:v; }
+  function easeOut(t){ return 1-Math.pow(1-t,3); }
+
+  function frac() {
+    var r = trigger.getBoundingClientRect();
+    var h = trigger.offsetHeight;
+    var vh = window.innerHeight;
+    return clamp(-r.top/(h-vh), 0, 1);
+  }
+
+  function tick() {
+    var r = trigger.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var on = r.top < vh && r.bottom > 0;
+
+    if (on !== active) {
+      active = on;
+      if (on) { panel.classList.add('active'); panel.setAttribute('aria-hidden','false'); }
+      else    { panel.classList.remove('active'); panel.setAttribute('aria-hidden','true'); }
+    }
+
+    if (on) {
+      var f = frac();
+
+      cards.forEach(function(el, i) {
+        var sc = SCHED[i];
+        var lp = clamp((f - sc.es) / (sc.ee - sc.es), 0, 1);
+        var e  = easeOut(lp);
+
+        // one-way ratchet: ty can only go to 0, never back
+        var nty = 1 - e;
+        S[i].minTy = Math.min(S[i].minTy, nty);
+
+        var tyTgt  = S[i].minTy;
+        var rotTgt = sc.rot * e;
+        var opTgt  = lp > 0.02 ? 1 : 0;
+
+        // scale-back for cards below later entries
+        var scTgt = 1;
+        for (var j = i+1; j < cards.length; j++) {
+          var jp = clamp((f - SCHED[j].es)/(SCHED[j].ee - SCHED[j].es), 0, 1);
+          scTgt -= easeOut(jp) * 0.025;
+        }
+        scTgt = Math.max(scTgt, 0.90);
+
+        // Integrate springs
+        S[i].ty  = lerp(S[i].ty,  tyTgt,  LY);
+        S[i].rot = lerp(S[i].rot, rotTgt, LR);
+        S[i].op  = lerp(S[i].op,  opTgt,  LO);
+        S[i].sc  = lerp(S[i].sc,  scTgt,  LS);
+
+        el.style.opacity   = S[i].op;
+        el.style.transform = 'translateY('+( S[i].ty*100 )+'vh) rotate('+S[i].rot+'deg) scale('+S[i].sc+')';
+      });
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth <= 860) {
+      panel.classList.remove('active');
+      panel.setAttribute('aria-hidden','true');
+    }
+  }, {passive:true});
+})();
+
+/* Section header reveal */
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.12, rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+/* Hero float */
+var hi = document.getElementById('heroIllus');
+var himg = document.getElementById('heroImg');
+function sf(){ setTimeout(function(){ hi.classList.add('float'); }, 900); }
+himg.addEventListener('load', sf);
+if (himg.complete) sf();
+
+/* Cursor glow */
+var glow = document.getElementById('cg');
+if (window.matchMedia('(pointer:fine)').matches) {
+  var mx=0,my=0,gx=0,gy=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;glow.style.opacity='1';});
+  document.addEventListener('mouseleave',function(){glow.style.opacity='0';});
+  (function gl(){ gx+=(mx-gx)*.07; gy+=(my-gy)*.07; glow.style.left=gx+'px'; glow.style.top=gy+'px'; requestAnimationFrame(gl); })();
+}
+
+/* Haptics */
+document.querySelectorAll('.btn').forEach(function(b){
+  b.addEventListener('click',function(){ if('vibrate' in navigator) navigator.vibrate(10); });
+});
+</script>
+</body>
+</html>

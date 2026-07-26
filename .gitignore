@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Large video files (optional - remove if you want to include)
+*.mp4
+
+# Source/scratch files
+source/
+Desktop*.png
