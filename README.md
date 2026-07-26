@@ -2,7 +2,7 @@
 
 > *Love for Koffi, Fear of Small Places.*
 
-A premium coffee brand landing page built as part of the **Josh Becomes an Engineer in 15 Days** challenge. Pixel-perfect recreation of a Figma design with scroll-driven animations and rich micro-interactions.
+A premium coffee brand landing page built as part of the **30 Days Challenge By Amarachi Iwueze** challenge. Pixel-perfect recreation of a Figma design with scroll-driven animations and rich micro-interactions.
 
 ---
 
@@ -68,7 +68,6 @@ npx serve .
 
 ## 🎨 Design
 
-- **Figma Source:** [Josh Becomes an Engineer — KOFFI](https://www.figma.com/design/Yn1FvaZB1kLNuqk8tySfsl/Josh-Becomes-an-Engineer-in-15-days?node-id=7-5)
 - **Color Palette:**
   - Forest Green `#09543D`
   - Deep Brown `#461E10`
@@ -91,7 +90,7 @@ npx serve .
 
 ## 📅 Context
 
-This project is **Day 3** of the *Josh Becomes an Engineer in 15 Days* self-challenge — going from zero to job-ready frontend engineer by building real Figma-to-code projects every day.
+This project is a self-challenge going from zero to job-ready design engineer by building real Figma-to-code projects every day.
 
 ---
 
